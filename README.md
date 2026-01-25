@@ -4,11 +4,25 @@ A modern asset management application built with Laravel 12, PostgreSQL, and Sti
 
 ## Features
 
+### Authentication & User Management
 - **User Authentication**: Complete authentication system with login, register, email verification, and password reset
+- **Profile Management**: User can view and edit their profile information
+- **Password Management**: Change password with current password verification
+- **Clean Auth UI**: Elegant login and reset password pages without navbar/sidebar
+
+### Core Features
+- **Category Management**: Full CRUD operations for asset categories
+  - List categories with pagination (10 items per page)
+  - Create, read, update, and delete categories
+  - Bootstrap-styled pagination
 - **Admin Dashboard**: Clean and modern dashboard interface using Stisla template
+- **Session Management**: Database-driven session handling
+
+### Technical Features
 - **PostgreSQL Database**: Robust and scalable database system
 - **Responsive Design**: Mobile-friendly interface with Bootstrap 4
-- **Session Management**: Database-driven session handling
+- **Bootstrap Pagination**: Clean and responsive pagination styling
+- **Form Validation**: Server-side validation with user-friendly error messages
 
 ## Tech Stack
 
@@ -78,7 +92,12 @@ php artisan key:generate
 php artisan migrate
 ```
 
-7. **Build frontend assets**
+7. **Seed the database (optional)**
+```bash
+php artisan db:seed
+```
+
+8. **Build frontend assets**
 ```bash
 npm run build
 ```
@@ -102,10 +121,19 @@ http://localhost:8000
 
 ## Default Routes
 
+### Public Routes
+- `/` - Welcome page
 - `/login` - User login page
 - `/register` - User registration page
-- `/home` - Dashboard (requires authentication)
 - `/password/reset` - Password reset page
+
+### Protected Routes (requires authentication)
+- `/admin/home` - Dashboard
+- `/admin/profile` - User profile page
+- `/admin/category` - Category list with pagination
+- `/admin/category/create` - Create new category
+- `/admin/category/{id}` - View category details
+- `/admin/category/{id}/edit` - Edit category
 
 ## Database Configuration
 
@@ -114,6 +142,16 @@ This application uses PostgreSQL. Make sure PostgreSQL service is running and yo
 ```sql
 CREATE DATABASE asset2026_app;
 ```
+
+### Database Tables
+
+The application includes the following tables:
+- `users` - User accounts and authentication
+- `categories` - Asset categories with nama_kategori field
+- `sessions` - Session management
+- `cache` - Cache storage
+- `jobs` - Queue jobs
+- `password_reset_tokens` - Password reset functionality
 
 ## Stisla Template Assets
 
@@ -126,6 +164,16 @@ Extract the following folders to `public/`:
 - `assets/img/`
 
 ## Development
+
+### Fresh migration (reset database)
+```bash
+php artisan migrate:fresh
+```
+
+### Fresh migration with seeding
+```bash
+php artisan migrate:fresh --seed
+```
 
 ### Build for production
 ```bash
@@ -144,6 +192,41 @@ php artisan cache:clear
 php artisan view:clear
 ```
 
+## Application Structure
+
+```
+app/
+├── Http/Controllers/
+│   ├── CategoryController.php    # Category CRUD operations
+│   ├── ProfileController.php     # User profile management
+│   └── HomeController.php        # Dashboard
+├── Models/
+│   ├── User.php                  # User model
+│   └── Category.php              # Category model
+└── Providers/
+    └── AppServiceProvider.php    # Bootstrap pagination config
+
+resources/views/
+├── auth/                         # Authentication views
+│   ├── login.blade.php
+│   ├── register.blade.php
+│   └── passwords/reset.blade.php
+├── category/                     # Category management views
+│   ├── index.blade.php          # List with pagination
+│   ├── add.blade.php            # Create form
+│   ├── edit.blade.php           # Edit form
+│   └── show.blade.php           # Detail view
+├── profile/
+│   └── index.blade.php          # Profile management
+├── component/
+│   ├── nav.blade.php            # Navigation bar
+│   ├── sidebar.blade.php        # Sidebar menu
+│   └── footer.blade.php         # Footer
+└── layouts/
+    └── app.blade.php            # Main layout
+```
+
 ## License
 
 This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
