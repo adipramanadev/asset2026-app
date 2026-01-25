@@ -1,59 +1,149 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Asset Management System 2026
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern asset management application built with Laravel 12, PostgreSQL, and Stisla Admin Template.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **User Authentication**: Complete authentication system with login, register, email verification, and password reset
+- **Admin Dashboard**: Clean and modern dashboard interface using Stisla template
+- **PostgreSQL Database**: Robust and scalable database system
+- **Responsive Design**: Mobile-friendly interface with Bootstrap 4
+- **Session Management**: Database-driven session handling
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Backend**: Laravel 12.x (PHP 8.2+)
+- **Database**: PostgreSQL
+- **Frontend**: 
+  - Stisla Admin Template
+  - Bootstrap 4.3
+  - Font Awesome 5.7
+  - Vite (Asset bundling)
+- **Authentication**: Laravel UI with Bootstrap scaffolding
 
-## Learning Laravel
+## Requirements
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- PHP >= 8.2
+- PostgreSQL >= 12
+- Composer
+- Node.js & NPM
+- PHP Extensions:
+  - pdo_pgsql
+  - pgsql
+  - mbstring
+  - openssl
+  - json
+  - tokenizer
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Installation
 
-## Laravel Sponsors
+1. **Clone the repository**
+```bash
+git clone <repository-url>
+cd asset2026-app
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2. **Install PHP dependencies**
+```bash
+composer install
+```
 
-### Premium Partners
+3. **Install NPM dependencies**
+```bash
+npm install
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+4. **Configure environment**
+```bash
+cp .env.example .env
+```
 
-## Contributing
+Edit `.env` file and configure your database:
+```env
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=asset2026_app
+DB_USERNAME=postgres
+DB_PASSWORD=your_password
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5. **Generate application key**
+```bash
+php artisan key:generate
+```
 
-## Code of Conduct
+6. **Run database migrations**
+```bash
+php artisan migrate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+7. **Build frontend assets**
+```bash
+npm run build
+```
 
-## Security Vulnerabilities
+## Running the Application
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. **Start the development server**
+```bash
+php artisan serve
+```
+
+2. **Start Vite dev server (for hot reload)**
+```bash
+npm run dev
+```
+
+3. **Access the application**
+```
+http://localhost:8000
+```
+
+## Default Routes
+
+- `/login` - User login page
+- `/register` - User registration page
+- `/home` - Dashboard (requires authentication)
+- `/password/reset` - Password reset page
+
+## Database Configuration
+
+This application uses PostgreSQL. Make sure PostgreSQL service is running and you have created the database:
+
+```sql
+CREATE DATABASE asset2026_app;
+```
+
+## Stisla Template Assets
+
+To get full styling, download Stisla template from:
+https://github.com/stisla/stisla/releases
+
+Extract the following folders to `public/`:
+- `assets/css/`
+- `assets/js/`
+- `assets/img/`
+
+## Development
+
+### Build for production
+```bash
+npm run build
+```
+
+### Run tests
+```bash
+php artisan test
+```
+
+### Clear cache
+```bash
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+```
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
