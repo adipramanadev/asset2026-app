@@ -629,7 +629,7 @@
                 @if (Route::has('login'))
                     <nav>
                         @auth
-                            <a href="{{ url('/dashboard') }}" class="btn btn-outline">Dashboard</a>
+                            <a href="{{ url('/admin/home') }}" class="btn btn-outline">Dashboard</a>
                         @else
                             <a href="{{ route('login') }}" class="btn btn-ghost">Masuk</a>
                             @if (Route::has('register'))

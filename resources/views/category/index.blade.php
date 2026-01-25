@@ -51,14 +51,40 @@
                         </tbody>
                     </table>
                 </div>
-                @if($categories->hasPages())
                 <div class="card-footer">
                     <div class="d-flex justify-content-center">
                         {{ $categories->links() }}
                     </div>
                 </div>
-                @endif
             </div>
         </div>
     </section>
+
+    <style>
+        /* Pagination Styling */
+        .pagination {
+            margin: 0;
+        }
+        .pagination .page-link {
+            color: #6777ef;
+            border: 1px solid #dee2e6;
+            padding: 0.5rem 0.75rem;
+        }
+        .pagination .page-link:hover {
+            color: #394eea;
+            background-color: #e9ecef;
+            border-color: #dee2e6;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #6777ef;
+            border-color: #6777ef;
+            color: #fff;
+        }
+        .pagination .page-item.disabled .page-link {
+            color: #6c757d;
+            pointer-events: none;
+            background-color: #fff;
+            border-color: #dee2e6;
+        }
+    </style>
 @endsection
