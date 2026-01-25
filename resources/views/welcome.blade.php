@@ -213,8 +213,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
         }
 
         h1 {
@@ -360,9 +367,17 @@
             border-radius: 50%;
         }
 
-        .control-red { background: #ef4444; }
-        .control-yellow { background: #f59e0b; }
-        .control-green { background: #10b981; }
+        .control-red {
+            background: #ef4444;
+        }
+
+        .control-yellow {
+            background: #f59e0b;
+        }
+
+        .control-green {
+            background: #10b981;
+        }
 
         .preview-title {
             font-size: 0.75rem;
@@ -429,8 +444,13 @@
             font-size: 0.75rem;
         }
 
-        .positive { color: var(--success); }
-        .warning { color: var(--warning); }
+        .positive {
+            color: var(--success);
+        }
+
+        .warning {
+            color: var(--warning);
+        }
 
         .activity-box {
             background: var(--bg-light);
@@ -568,6 +588,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -578,9 +599,17 @@
             animation: fadeInUp 0.6s ease-out backwards;
         }
 
-        .animate-delay-1 { animation-delay: 0.1s; }
-        .animate-delay-2 { animation-delay: 0.2s; }
-        .animate-delay-3 { animation-delay: 0.3s; }
+        .animate-delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .animate-delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .animate-delay-3 {
+            animation-delay: 0.3s;
+        }
     </style>
 </head>
 
@@ -593,7 +622,7 @@
                     <div class="logo">AM</div>
                     <div class="logo-text">
                         <h1>{{ config('app.name') }}</h1>
-                        <p>Asset Management System</p>
+                        
                     </div>
                 </div>
 
