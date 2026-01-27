@@ -6,12 +6,12 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     use WithoutModelEvents;
 
     /**
-     * Seed the application's database.
+     * Run the database seeders.
      */
     public function run(): void
     {
@@ -29,18 +29,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'petugas@example.com',
             'password' => bcrypt('password'),
             'role' => 'petugas',
-        ]);
-
-        // Create test user
-        User::factory()->create([
-            'name' => 'herry',
-            'email' => 'herry@example.com',
-            'password' => bcrypt('password'),
-            'role' => 'petugas',
-        ]);
-
-        $this->call([
-            CategorySeeder::class,
         ]);
     }
 }

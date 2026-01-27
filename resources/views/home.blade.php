@@ -22,78 +22,81 @@
                 </div>
             @endif
 
-            {{-- Statistics Cards Row 1 --}}
-            <div class="row">
-                {{-- Total Assets Card --}}
-                <div class="col-md-3 col-sm-6">
-                    <div class="card card-statistic-1">
-                        <div class="card-icon bg-primary">
-                            <i class="fas fa-box"></i>
-                        </div>
-                        <div class="card-wrap">
-                            <div class="card-header">
-                                <h4>Total Aset</h4>
+            {{-- ADMIN DASHBOARD --}}
+            @if (auth()->user()->role === 'admin')
+                {{-- Statistics Cards Row 1 --}}
+                <div class="row">
+                    {{-- Total Assets Card --}}
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-primary">
+                                <i class="fas fa-box"></i>
                             </div>
-                            <div class="card-body">
-                                {{ $totalAset }}
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Aset</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $totalAset }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Total Categories Card --}}
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-warning">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Kategori</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $totalKategori }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Total Locations Card --}}
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-success">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Lokasi</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $totalLokasi }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Total Quantity Card --}}
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-info">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Total Unit</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $totalJumlah }}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            @endif
 
-                {{-- Total Categories Card --}}
-                <div class="col-md-3 col-sm-6">
-                    <div class="card card-statistic-1">
-                        <div class="card-icon bg-warning">
-                            <i class="fas fa-tags"></i>
-                        </div>
-                        <div class="card-wrap">
-                            <div class="card-header">
-                                <h4>Kategori</h4>
-                            </div>
-                            <div class="card-body">
-                                {{ $totalKategori }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Total Locations Card --}}
-                <div class="col-md-3 col-sm-6">
-                    <div class="card card-statistic-1">
-                        <div class="card-icon bg-success">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="card-wrap">
-                            <div class="card-header">
-                                <h4>Lokasi</h4>
-                            </div>
-                            <div class="card-body">
-                                {{ $totalLokasi }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Total Quantity Card --}}
-                <div class="col-md-3 col-sm-6">
-                    <div class="card card-statistic-1">
-                        <div class="card-icon bg-info">
-                            <i class="fas fa-cube"></i>
-                        </div>
-                        <div class="card-wrap">
-                            <div class="card-header">
-                                <h4>Total Unit</h4>
-                            </div>
-                            <div class="card-body">
-                                {{ $totalJumlah }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Statistics Cards Row 2 --}}
+            {{-- COMMON STATISTICS - Shown for both roles --}}
             <div class="row">
                 {{-- Good Condition Card --}}
                 <div class="col-md-3 col-sm-6">
@@ -168,32 +171,34 @@
                 </div>
             </div>
 
-            {{-- Charts Row --}}
-            <div class="row">
-                {{-- Condition Chart --}}
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Distribusi Kondisi Aset</h4>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="kondisiChart" height="100"></canvas>
+            {{-- Charts Row - Only for Admin --}}
+            @if (auth()->user()->role === 'admin')
+                <div class="row">
+                    {{-- Condition Chart --}}
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Distribusi Kondisi Aset</h4>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="kondisiChart" height="100"></canvas>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                {{-- Top Categories Chart --}}
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Aset per Kategori (Top 5)</h4>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="kategoriChart" height="100"></canvas>
+                    {{-- Top Categories Chart --}}
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Aset per Kategori (Top 5)</h4>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="kategoriChart" height="100"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
 
             {{-- Recent Assets Table --}}
             <div class="row">
@@ -268,85 +273,87 @@
         </div>
     </section>
 
-    {{-- Chart.js Library --}}
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    {{-- Chart.js Library - Only for Admin --}}
+    @if (auth()->user()->role === 'admin')
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 
-    <script>
-        // Condition Distribution Chart
-        const kondisiCtx = document.getElementById('kondisiChart').getContext('2d');
-        new Chart(kondisiCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Baik', 'Rusak', 'Maintenance'],
-                datasets: [{
-                    data: [{{ $kondisiData['baik'] }}, {{ $kondisiData['rusak'] }},
-                        {{ $kondisiData['maintenance'] }}
-                    ],
-                    backgroundColor: ['#28a745', '#dc3545', '#ffc107'],
-                    borderColor: ['#20c997', '#c82333', '#ff9800'],
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            padding: 15,
-                            font: {
-                                size: 12
+        <script>
+            // Condition Distribution Chart
+            const kondisiCtx = document.getElementById('kondisiChart').getContext('2d');
+            new Chart(kondisiCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Baik', 'Rusak', 'Maintenance'],
+                    datasets: [{
+                        data: [{{ $kondisiData['baik'] }}, {{ $kondisiData['rusak'] }},
+                            {{ $kondisiData['maintenance'] }}
+                        ],
+                        backgroundColor: ['#28a745', '#dc3545', '#ffc107'],
+                        borderColor: ['#20c997', '#c82333', '#ff9800'],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 15,
+                                font: {
+                                    size: 12
+                                }
                             }
                         }
                     }
                 }
-            }
-        });
+            });
 
-        // Category Distribution Chart
-        const kategoriCtx = document.getElementById('kategoriChart').getContext('2d');
-        new Chart(kategoriCtx, {
-            type: 'bar',
-            data: {
-                labels: [
-                    @foreach ($asetByKategori as $kategori)
-                        '{{ $kategori->nama_kategori }}',
-                    @endforeach
-                ],
-                datasets: [{
-                    label: 'Jumlah Aset',
-                    data: [
+            // Category Distribution Chart
+            const kategoriCtx = document.getElementById('kategoriChart').getContext('2d');
+            new Chart(kategoriCtx, {
+                type: 'bar',
+                data: {
+                    labels: [
                         @foreach ($asetByKategori as $kategori)
-                            {{ $kategori->total }},
+                            '{{ $kategori->nama_kategori }}',
                         @endforeach
                     ],
-                    backgroundColor: '#6777ef',
-                    borderColor: '#4c51bf',
-                    borderWidth: 1,
-                    borderRadius: 5
-                }]
-            },
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
+                    datasets: [{
+                        label: 'Jumlah Aset',
+                        data: [
+                            @foreach ($asetByKategori as $kategori)
+                                {{ $kategori->total }},
+                            @endforeach
+                        ],
+                        backgroundColor: '#6777ef',
+                        borderColor: '#4c51bf',
+                        borderWidth: 1,
+                        borderRadius: 5
+                    }]
                 },
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 1
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            }
                         }
                     }
                 }
-            }
-        });
-    </script>
+            });
+        </script>
+    @endif
 
     <style>
         .card-statistic-1 {
