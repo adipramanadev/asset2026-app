@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LocationController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,4 +31,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::delete('category/{category}/delete', [CategoryController::class, 'destroy'])->name('category.destroy');
     // category show
     Route::get('category/{category}', [CategoryController::class, 'show'])->name('category.show');
+    
+    //lokasi 
+    Route::get('lokasi', [LocationController::class, 'index'])->name('location.index');
+    Route::get('lokasi/create', [LocationController::class, 'create'])->name('location.create');
+    Route::post('lokasi/store', [LocationController::class, 'store'])->name('location.store');
+    Route::get('lokasi/{location}/edit', [LocationController::class, 'edit'])->name('location.edit');
+    Route::put('lokasi/{location}/update', [LocationController::class, 'update'])->name('location.update');
+    Route::delete('lokasi/{location}/delete', [LocationController::class, 'destroy'])->name('location.destroy');
+    Route::get('lokasi/{location}', [LocationController::class, 'show'])->name('location.show');
 });

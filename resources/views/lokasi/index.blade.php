@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Category List')
+@section('title', 'Lokasi List')
 
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Category List</h1>
+            <h1>Daftar Lokasi</h1>
         </div>
 
         <div class="section-body">
@@ -17,33 +17,37 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ route('category.create') }}" class="btn btn-primary">Add Category</a>
+                    <a href="{{ route('location.create') }}" class="btn btn-primary">Tambah Lokasi</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nama Kategori</th>
+                                <th>Nama Lokasi</th>
+                                <th>Alamat</th>
+                                <th>Deskripsi</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categories as $category)
+                            @foreach ($locations as $location)
                                 <tr>
-                                    <td>{{ $category->id }}</td>
-                                    <td>{{ $category->nama_kategori }}</td>
+                                    <td>{{ $location->id }}</td>
+                                    <td>{{ $location->nama_lokasi }}</td>
+                                    <td>{{ $location->alamat ?? '-' }}</td>
+                                    <td>{{ Str::limit($location->deskripsi, 50) ?? '-' }}</td>
                                     <td>
-                                        <a href="{{ route('category.show', $category->id) }}"
-                                            class="btn btn-info btn-sm">View</a>
-                                        <a href="{{ route('category.edit', $category->id) }}"
+                                        <a href="{{ route('location.show', $location->id) }}"
+                                            class="btn btn-info btn-sm">Lihat</a>
+                                        <a href="{{ route('location.edit', $location->id) }}"
                                             class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('category.destroy', $category->id) }}" method="POST"
+                                        <form action="{{ route('location.destroy', $location->id) }}" method="POST"
                                             style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Are you sure?')">Delete</button>
+                                                onclick="return confirm('Apakah Anda yakin?')">Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -53,7 +57,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-center">
-                        {{ $categories->links() }}
+                        {{ $locations->links() }}
                     </div>
                 </div>
             </div>
