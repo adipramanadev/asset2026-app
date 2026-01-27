@@ -1,232 +1,186 @@
-# Asset Management System 2026
+# {{ config('app.name') }} - Sistem Manajemen Aset Modern
 
-A modern asset management application built with Laravel 12, PostgreSQL, and Stisla Admin Template.
+Solusi modern untuk mengelola inventaris aset perusahaan dengan transparan, efisien, dan terukur. Satu sistem untuk katalog, lokasi, peminjaman, perawatan, hingga laporan audit-ready.
 
-## Features
+## 🎯 Fitur Utama
 
-### Authentication & User Management
-- **User Authentication**: Complete authentication system with login, register, email verification, and password reset
-- **Profile Management**: User can view and edit their profile information
-- **Password Management**: Change password with current password verification
-- **Clean Auth UI**: Elegant login and reset password pages without navbar/sidebar
+### 📋 Katalog & Kategori
+- Struktur aset jelas dengan kategori dan sub-kategori unlimited
+- Label dan tagging otomatis untuk organisasi data
+- Status tracking real-time untuk setiap aset
+- Deskripsi detail dan spesifikasi lengkap
 
-### Core Features
-- **Category Management**: Full CRUD operations for asset categories
-  - List categories with pagination (10 items per page)
-  - Create, read, update, and delete categories
-  - Bootstrap-styled pagination
-- **Admin Dashboard**: Clean and modern dashboard interface using Stisla template
-- **Session Management**: Database-driven session handling
+### 📊 Audit Trail
+- Riwayat perubahan tercatat lengkap: siapa, kapan, dan apa yang diubah
+- Log tracking untuk setiap modifikasi data
+- Informasi user dan timestamp pada setiap transaksi
+- Compliance dengan standar audit internal dan eksternal
 
-### Technical Features
-- **PostgreSQL Database**: Robust and scalable database system
-- **Responsive Design**: Mobile-friendly interface with Bootstrap 4
-- **Bootstrap Pagination**: Clean and responsive pagination styling
-- **Form Validation**: Server-side validation with user-friendly error messages
+### ↔️ Peminjaman & Mutasi
+- Alur pinjam-kembali yang sistematis dan terstruktur
+- Request peminjaman dengan persetujuan workflow
+- Tracking peminjam dan durasi peminjaman
+- Reminder otomatis untuk keperluan pengembalian aset
+- Perpindahan lokasi yang terdokumentasi
 
-## Tech Stack
+### 📈 Laporan Instan
+- Dashboard ringkasan dengan update real-time
+- Total nilai aset dan statistik kondisi
+- Export ke format Excel dan PDF
+- Custom reports sesuai kebutuhan
+- Visual charts dan analytics
 
-- **Backend**: Laravel 12.x (PHP 8.2+)
-- **Database**: PostgreSQL
-- **Frontend**: 
-  - Stisla Admin Template
-  - Bootstrap 4.3
-  - Font Awesome 5.7
-  - Vite (Asset bundling)
-- **Authentication**: Laravel UI with Bootstrap scaffolding
+### 👥 Multi-User & Role-Based Access
+- Admin, Manager, dan User roles dengan permission berbeda
+- Department dan divisi terpisah untuk organisasi skala besar
+- Session tracking dan security audit
+- Access control berbasis peran (RBAC)
 
-## Requirements
+### 🔧 Perawatan & Maintenance
+- Schedule maintenance berkala untuk setiap aset
+- History perawatan lengkap dan terstruktur
+- Cost tracking untuk monitoring pengeluaran maintenance
+- Alert otomatis saat maintenance jatuh tempo
 
-- PHP >= 8.2
-- PostgreSQL >= 12
+### 📍 Multi-Lokasi
+- Kelola aset di berbagai lokasi/kantor
+- Sinkronisasi real-time antar lokasi
+- Laporan per lokasi untuk visibility selengkap-lengkapnya
+
+### 💰 Manajemen Nilai Aset
+- Tracking nilai aset dan depresiasi otomatis
+- Reporting sesuai standar akuntansi
+- Perubahan nilai tercatat dan terawdit
+
+## 🚀 Quick Start
+
+### Requirements
+- PHP 8.0 atau lebih tinggi
+- Laravel 10.x
+- MySQL 5.7 atau PostgreSQL 10+
 - Composer
-- Node.js & NPM
-- PHP Extensions:
-  - pdo_pgsql
-  - pgsql
-  - mbstring
-  - openssl
-  - json
-  - tokenizer
 
-## Installation
+### Installation
 
-1. **Clone the repository**
+1. Clone repository
 ```bash
 git clone <repository-url>
 cd asset2026-app
 ```
 
-2. **Install PHP dependencies**
+2. Install dependencies
 ```bash
 composer install
 ```
 
-3. **Install NPM dependencies**
-```bash
-npm install
-```
-
-4. **Configure environment**
+3. Setup environment
 ```bash
 cp .env.example .env
-```
-
-Edit `.env` file and configure your database:
-```env
-DB_CONNECTION=pgsql
-DB_HOST=127.0.0.1
-DB_PORT=5432
-DB_DATABASE=asset2026_app
-DB_USERNAME=postgres
-DB_PASSWORD=your_password
-```
-
-5. **Generate application key**
-```bash
 php artisan key:generate
 ```
 
-6. **Run database migrations**
+4. Database setup
 ```bash
 php artisan migrate
-```
-
-7. **Seed the database (optional)**
-```bash
 php artisan db:seed
 ```
 
-8. **Build frontend assets**
-```bash
-npm run build
-```
-
-## Running the Application
-
-1. **Start the development server**
+5. Jalankan application
 ```bash
 php artisan serve
 ```
 
-2. **Start Vite dev server (for hot reload)**
-```bash
-npm run dev
+Akses aplikasi di `http://localhost:8000`
+
+## 📖 Penggunaan
+
+### Login & Register
+- Kunjungi homepage untuk registrasi akun baru
+- Login dengan email dan password
+- Sistem otomatis mengarahkan ke dashboard sesuai role
+
+### Dashboard
+Dashboard menampilkan:
+- Ringkasan total aset
+- Aset dalam peminjaman
+- Aktivitas terbaru
+- Kondisi aset (visual chart)
+
+### Manajemen Aset
+1. Akses menu **Aset Inventory**
+2. **Create** - Tambah aset baru dengan kategori, lokasi, dan detail
+3. **View** - Lihat history dan detail aset
+4. **Edit** - Update informasi aset
+5. **Delete** - Hapus aset (dengan audit log)
+
+### Peminjaman Aset
+1. Buka menu **Peminjaman**
+2. **Request** - Buat request peminjaman dengan durasi
+3. **Approve** - Manager approve/reject request
+4. **Return** - Catat pengembalian aset
+5. **History** - Lihat riwayat peminjaman per user/aset
+
+### Perawatan Aset
+1. Akses **Maintenance Schedule**
+2. Buat jadwal perawatan berkala
+3. Track history perawatan dan biaya
+4. Alert notifikasi untuk maintenance due
+
+### Laporan
+- **Asset Report** - Overview semua aset dengan filter
+- **Depreciation Report** - Analisa penyusutan nilai
+- **Loan Report** - Tracking peminjaman aktif & completed
+- **Maintenance Report** - Riwayat dan cost analysis
+- Export ke Excel/PDF untuk presentasi
+
+## 🔐 Keamanan
+
+- Enkripsi password dengan bcrypt
+- CSRF protection untuk form submission
+- SQL injection prevention dengan prepared statements
+- XSS protection
+- Rate limiting untuk login attempts
+- Session management yang aman
+- Backup otomatis terencana
+
+## 📱 Responsive Design
+
+Aplikasi responsive dan dapat diakses dari:
+- Desktop (Chrome, Firefox, Safari, Edge)
+- Tablet (iPad, Android Tablet)
+- Smartphone (iOS, Android)
+
+## 🛠️ Konfigurasi
+
+Edit file `.env` untuk konfigurasi:
+```env
+APP_NAME="{{ config('app.name') }}"
+APP_ENV=production
+APP_DEBUG=false
+DB_CONNECTION=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=asset2026
+DB_USERNAME=root
+DB_PASSWORD=
 ```
 
-3. **Access the application**
-```
-http://localhost:8000
-```
+## 📞 Support
 
-## Default Routes
+- **Dokumentasi**: [Link Dokumentasi]
+- **Email Support**: support@asset2026.com
+- **Issue Tracker**: [GitHub Issues]
 
-### Public Routes
-- `/` - Welcome page
-- `/login` - User login page
-- `/register` - User registration page
-- `/password/reset` - Password reset page
+## 📄 License
 
-### Protected Routes (requires authentication)
-- `/admin/home` - Dashboard
-- `/admin/profile` - User profile page
-- `/admin/category` - Category list with pagination
-- `/admin/category/create` - Create new category
-- `/admin/category/{id}` - View category details
-- `/admin/category/{id}/edit` - Edit category
+Proprietary - Semua hak cipta dilindungi.
 
-## Database Configuration
+## 👨‍💼 Tim Developer
 
-This application uses PostgreSQL. Make sure PostgreSQL service is running and you have created the database:
+Dikembangkan untuk solusi manajemen aset enterprise yang scalable dan reliable.
 
-```sql
-CREATE DATABASE asset2026_app;
-```
+---
 
-### Database Tables
-
-The application includes the following tables:
-- `users` - User accounts and authentication
-- `categories` - Asset categories with nama_kategori field
-- `sessions` - Session management
-- `cache` - Cache storage
-- `jobs` - Queue jobs
-- `password_reset_tokens` - Password reset functionality
-
-## Stisla Template Assets
-
-To get full styling, download Stisla template from:
-https://github.com/stisla/stisla/releases
-
-Extract the following folders to `public/`:
-- `assets/css/`
-- `assets/js/`
-- `assets/img/`
-
-## Development
-
-### Fresh migration (reset database)
-```bash
-php artisan migrate:fresh
-```
-
-### Fresh migration with seeding
-```bash
-php artisan migrate:fresh --seed
-```
-
-### Build for production
-```bash
-npm run build
-```
-
-### Run tests
-```bash
-php artisan test
-```
-
-### Clear cache
-```bash
-php artisan config:clear
-php artisan cache:clear
-php artisan view:clear
-```
-
-## Application Structure
-
-```
-app/
-├── Http/Controllers/
-│   ├── CategoryController.php    # Category CRUD operations
-│   ├── ProfileController.php     # User profile management
-│   └── HomeController.php        # Dashboard
-├── Models/
-│   ├── User.php                  # User model
-│   └── Category.php              # Category model
-└── Providers/
-    └── AppServiceProvider.php    # Bootstrap pagination config
-
-resources/views/
-├── auth/                         # Authentication views
-│   ├── login.blade.php
-│   ├── register.blade.php
-│   └── passwords/reset.blade.php
-├── category/                     # Category management views
-│   ├── index.blade.php          # List with pagination
-│   ├── add.blade.php            # Create form
-│   ├── edit.blade.php           # Edit form
-│   └── show.blade.php           # Detail view
-├── profile/
-│   └── index.blade.php          # Profile management
-├── component/
-│   ├── nav.blade.php            # Navigation bar
-│   ├── sidebar.blade.php        # Sidebar menu
-│   └── footer.blade.php         # Footer
-└── layouts/
-    └── app.blade.php            # Main layout
-```
-
-## License
-
-This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Versi**: 1.0.0  
+**Last Updated**: {{ date('Y-m-d') }}
 
