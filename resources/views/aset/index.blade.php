@@ -37,8 +37,8 @@
                                 <tr>
                                     <td>{{ $item->kode_aset }}</td>
                                     <td>{{ $item->nama_aset }}</td>
-                                    <td>{{ $item->kategori->name ?? ($item->kategori->nama_kategori ?? '-') }}</td>
-                                    <td>{{ $item->lokasi->name ?? ($item->lokasi->nama_lokasi ?? '-') }}</td>
+                                    <td>{{ $item->kategori->nama_kategori ?? '-' }}</td>
+                                    <td>{{ $item->lokasi->nama_lokasi ?? '-' }}</td>
                                     <td>
                                         <span
                                             class="badge

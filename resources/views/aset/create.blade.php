@@ -35,18 +35,21 @@
                         @csrf
                         <div class="form-group">
                             <label for="kode_aset">Kode Aset</label>
-                            <input type="text" name="kode_aset" class="form-control" id="kode_aset" value="{{ old('kode_aset') }}" required>
+                            <input type="text" name="kode_aset" class="form-control" id="kode_aset"
+                                value="{{ old('kode_aset') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="nama_aset">Nama Aset</label>
-                            <input type="text" name="nama_aset" class="form-control" id="nama_aset" value="{{ old('nama_aset') }}" required>
+                            <input type="text" name="nama_aset" class="form-control" id="nama_aset"
+                                value="{{ old('nama_aset') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="kategori_id">Kategori</label>
                             <select name="kategori_id" class="form-control" id="kategori_id">
                                 <option value="">Pilih kategori</option>
-                                @foreach($kategori as $k)
-                                    <option value="{{ $k->id }}" {{ old('kategori_id') == $k->id ? 'selected' : '' }}>
+                                @foreach ($kategori as $k)
+                                    <option value="{{ $k->id }}"
+                                        {{ old('kategori_id') == $k->id ? 'selected' : '' }}>
                                         {{ $k->nama_kategori }}
                                     </option>
                                 @endforeach
@@ -56,8 +59,9 @@
                             <label for="lokasi_id">Lokasi</label>
                             <select name="lokasi_id" class="form-control" id="lokasi_id">
                                 <option value="">Pilih lokasi</option>
-                                @foreach($lokasi as $l)
-                                    <option value="{{ $l->id }}" {{ old('lokasi_id') == $l->id ? 'selected' : '' }}>
+                                @foreach ($lokasi as $l)
+                                    <option value="{{ $l->id }}"
+                                        {{ old('lokasi_id') == $l->id ? 'selected' : '' }}>
                                         {{ $l->nama_lokasi }}
                                     </option>
                                 @endforeach
@@ -69,12 +73,14 @@
                                 <option value="">Pilih kondisi</option>
                                 <option value="baik" {{ old('kondisi') == 'baik' ? 'selected' : '' }}>Baik</option>
                                 <option value="rusak" {{ old('kondisi') == 'rusak' ? 'selected' : '' }}>Rusak</option>
-                                <option value="maintenance" {{ old('kondisi') == 'maintenance' ? 'selected' : '' }}>Maintenance</option>
+                                <option value="maintenance" {{ old('kondisi') == 'maintenance' ? 'selected' : '' }}>
+                                    Maintenance</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="jumlah">Jumlah</label>
-                            <input type="number" name="jumlah" class="form-control" id="jumlah" value="{{ old('jumlah', 1) }}" min="1" required>
+                            <input type="number" name="jumlah" class="form-control" id="jumlah"
+                                value="{{ old('jumlah', 1) }}" min="1" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan Aset</button>
                     </form>

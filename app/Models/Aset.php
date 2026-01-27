@@ -30,7 +30,7 @@ class Aset extends Model
      */
     public function kategori()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Category::class, 'kategori_id');
     }
 
     /**
@@ -38,7 +38,7 @@ class Aset extends Model
      */
     public function lokasi()
     {
-        return $this->belongsTo(Location::class, 'location_id');
+        return $this->belongsTo(Location::class, 'lokasi_id');
     }
 
     /**
@@ -54,7 +54,7 @@ class Aset extends Model
      */
     public function scopeByKategori($query, $kategoriId)
     {
-        return $query->where('category_id', $kategoriId);
+        return $query->where('kategori_id', $kategoriId);
     }
 
     /**
@@ -62,6 +62,6 @@ class Aset extends Model
      */
     public function scopeByLokasi($query, $lokasiId)
     {
-        return $query->where('location_id', $lokasiId);
+        return $query->where('lokasi_id', $lokasiId);
     }
 }
