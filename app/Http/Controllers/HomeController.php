@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Aset;
+use App\Models\Category;
+use App\Models\Location;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,51 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // Get statistics
+        $totalAset = Aset::count();
+        $totalKategori = Category::count();
+        $totalLokasi = Location::count();
+
+        // Asset condition statistics
+        $asetBaik = Aset::where('kondisi', 'baik')->count();
+        $asetRusak = Aset::where('kondisi', 'rusak')->count();
+        $asetMaintenance = Aset::where('kondisi', 'maintenance')->count();
+
+        // Total quantity of assets
+        $totalJumlah = Aset::sum('jumlah') ?? 0;
+
+        // Recent assets (latest 5)
+        $recentAset = Aset::with(['kategori', 'lokasi'])
+            ->latest()
+            ->limit(5)
+            ->get();
+
+        // Asset by category
+        $asetByKategori = Aset::join('categories', 'aset.kategori_id', '=', 'categories.id')
+            ->select('categories.nama_kategori', 'categories.id')
+            ->selectRaw('COUNT(*) as total')
+            ->groupBy('categories.id', 'categories.nama_kategori')
+            ->limit(5)
+            ->get();
+
+        // Asset by condition for chart
+        $kondisiData = [
+            'baik' => $asetBaik,
+            'rusak' => $asetRusak,
+            'maintenance' => $asetMaintenance
+        ];
+
+        return view('home', compact(
+            'totalAset',
+            'totalKategori',
+            'totalLokasi',
+            'totalJumlah',
+            'asetBaik',
+            'asetRusak',
+            'asetMaintenance',
+            'recentAset',
+            'asetByKategori',
+            'kondisiData'
+        ));
     }
 }

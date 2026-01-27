@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
 </head>
 
-<body>
+<body class="font-sans antialiased">
     <div id="app">
         <div class="main-wrapper">
             <div class="navbar-bg"></div>
