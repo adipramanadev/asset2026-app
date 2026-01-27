@@ -6,9 +6,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LocationController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome')->name('welcome');
+Route::view('/features', 'features')->name('features');
 
 Auth::routes();
 
