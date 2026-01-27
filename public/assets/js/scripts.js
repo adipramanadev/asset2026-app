@@ -1,22 +1,18 @@
 "use strict";
 
-// ChartJS
+// ChartJS - Compatible with Chart.js v3+
 if(window.Chart) {
-  Chart.defaults.global.defaultFontFamily = "'Nunito', 'Segoe UI', 'Arial'";
-  Chart.defaults.global.defaultFontSize = 12;
-  Chart.defaults.global.defaultFontStyle = 500;
-  Chart.defaults.global.defaultFontColor = "#999";
-  Chart.defaults.global.tooltips.backgroundColor = "#000";
-  Chart.defaults.global.tooltips.bodyFontColor = "rgba(255,255,255,.7)";
-  Chart.defaults.global.tooltips.titleMarginBottom = 10;
-  Chart.defaults.global.tooltips.titleFontSize = 14;
-  Chart.defaults.global.tooltips.titleFontFamily = "'Nunito', 'Segoe UI', 'Arial'";
-  Chart.defaults.global.tooltips.titleFontColor = '#fff';
-  Chart.defaults.global.tooltips.xPadding = 15;
-  Chart.defaults.global.tooltips.yPadding = 15;
-  Chart.defaults.global.tooltips.displayColors = false;
-  Chart.defaults.global.tooltips.intersect = false;
-  Chart.defaults.global.tooltips.mode = 'nearest';
+  Chart.defaults.font = {
+    family: "'Nunito', 'Segoe UI', 'Arial'",
+    size: 12,
+    weight: 500
+  };
+  Chart.defaults.color = "#999";
+  Chart.defaults.plugins.tooltip.backgroundColor = "#000";
+  Chart.defaults.plugins.tooltip.bodyColor = "rgba(255,255,255,.7)";
+  Chart.defaults.plugins.tooltip.titleColor = '#fff';
+  Chart.defaults.plugins.tooltip.padding = 15;
+  Chart.defaults.plugins.tooltip.displayColors = false;
 }
 
 // DropzoneJS
@@ -184,7 +180,40 @@ $(function() {
     }
   }
 
-  $("[data-toggle='sidebar']").click(function() {
+  // Sidebar Toggle Button Handler
+  $(document).on('click', '#btn-sidebar-toggle', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    var body = $("body"),
+      w = $(window);
+
+    if(w.outerWidth() <= 1024) {
+      body.removeClass('search-show search-gone');
+      if(body.hasClass('sidebar-gone')) {
+        body.removeClass('sidebar-gone');
+        body.addClass('sidebar-show');
+      }else{
+        body.addClass('sidebar-gone');
+        body.removeClass('sidebar-show');
+      }
+      update_sidebar_nicescroll();
+    }else{
+      body.removeClass('search-show search-gone');
+      if(body.hasClass('sidebar-mini')) {
+        toggle_sidebar_mini(false);
+      }else{
+        toggle_sidebar_mini(true);
+      }
+    }
+
+    return false;
+  });
+
+  $(document).on('click', "[data-toggle='sidebar']", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
     var body = $("body"),
       w = $(window);
 
