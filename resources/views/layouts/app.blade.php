@@ -25,16 +25,20 @@
     <div id="app">
         <div class="main-wrapper">
             <div class="navbar-bg"></div>
-            @include('component.nav')
-            <div class="main-sidebar sidebar-style-2">
-                @include('component.sidebar')
-            </div>
+            @if (auth()->check())
+                @include('component.nav')
+                <div class="main-sidebar sidebar-style-2">
+                    @include('component.sidebar')
+                </div>
+            @endif
 
             <!-- Main Content -->
             <div class="main-content">
                 @yield('content')
             </div>
-            @include('component.footer')
+            @if (auth()->check())
+                @include('component.footer')
+            @endif
         </div>
     </div>
 
