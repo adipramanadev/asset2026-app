@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Category List')
+@section('title', 'Aset List')
 
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Category List</h1>
+            <h1>Manajemen Aset</h1>
         </div>
 
         <div class="section-body">
@@ -17,28 +17,43 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ route('category.create') }}" class="btn btn-primary">Add Category</a>
+                    <a href="{{ route('aset.create') }}" class="btn btn-primary">Tambah Aset</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Nama Kategori</th>
+                                <th>Kode</th>
+                                <th>Nama</th>
+                                <th>Kategori</th>
+                                <th>Lokasi</th>
+                                <th>Kondisi</th>
+                                <th>Jumlah</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categories as $category)
+                            @foreach ($aset as $item)
                                 <tr>
-                                    <td>{{ $category->id }}</td>
-                                    <td>{{ $category->nama_kategori }}</td>
+                                    <td>{{ $item->kode_aset }}</td>
+                                    <td>{{ $item->nama_aset }}</td>
+                                    <td>{{ $item->kategori->nama_kategori ?? '-' }}</td>
+                                    <td>{{ $item->lokasi->nama_lokasi ?? '-' }}</td>
                                     <td>
-                                        <a href="{{ route('category.show', $category->id) }}"
-                                            class="btn btn-info btn-sm">View</a>
-                                        <a href="{{ route('category.edit', $category->id) }}"
+                                        <span
+                                            class="badge
+                                            @if ($item->kondisi === 'baik') badge-success
+                                            @elseif($item->kondisi === 'rusak') badge-danger
+                                            @else badge-warning @endif">
+                                            {{ ucfirst($item->kondisi) }}
+                                        </span>
+                                    </td>
+                                    <td>{{ $item->jumlah }}</td>
+                                    <td>
+                                        <a href="{{ route('aset.show', $item->id) }}" class="btn btn-info btn-sm">View</a>
+                                        <a href="{{ route('aset.edit', $item->id) }}"
                                             class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('category.destroy', $category->id) }}" method="POST"
+                                        <form action="{{ route('aset.destroy', $item->id) }}" method="POST"
                                             style="display:inline;">
                                             @csrf
                                             @method('DELETE')
@@ -53,7 +68,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-center">
-                        {{ $categories->links() }}
+                        {{ $aset->links() }}
                     </div>
                 </div>
             </div>

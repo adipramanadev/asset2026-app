@@ -629,7 +629,7 @@
                 @if (Route::has('login'))
                     <nav>
                         @auth
-                            <a href="{{ url('/dashboard') }}" class="btn btn-outline">Dashboard</a>
+                            <a href="{{ url('/admin/home') }}" class="btn btn-outline">Dashboard</a>
                         @else
                             <a href="{{ route('login') }}" class="btn btn-ghost">Masuk</a>
                             @if (Route::has('register'))
@@ -708,7 +708,7 @@
                                 Mulai Sekarang →
                             </a>
                         @endauth
-                        <a href="#fitur" class="btn btn-outline btn-large">
+                        <a href="{{ route('features') }}" class="btn btn-outline btn-large">
                             Lihat Fitur
                         </a>
                     </div>
@@ -803,7 +803,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-text">
-                    © {{ date('Y') }} {{ config('app.name') }} • Sistem Manajemen Aset
+                    © {{ date('Y') }} {{ config('app.name') }} • Created with ♥ by Herry Prasetyo
                 </div>
                 <div class="footer-links">
                     <a href="#" class="footer-link">Dokumentasi</a>
