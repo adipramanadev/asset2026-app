@@ -43,6 +43,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             LocationSeeder::class,
             AsetSeeder::class,
+            // UserSeeder::class,
         ]);
     }
 }
