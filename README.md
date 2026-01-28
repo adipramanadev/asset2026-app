@@ -1,4 +1,6 @@
-# {{ config('app.name') }} - Sistem Manajemen Aset Modern
+
+# Asset2026 - Sistem Manajemen Aset Modern
+
 
 Solusi modern untuk mengelola inventaris aset perusahaan dengan transparan, efisien, dan terukur. Satu sistem untuk katalog, lokasi, peminjaman, perawatan, hingga laporan audit-ready.
 
@@ -54,13 +56,15 @@ Solusi modern untuk mengelola inventaris aset perusahaan dengan transparan, efis
 
 ## 🚀 Quick Start
 
+
 ### Requirements
-- PHP 8.0 atau lebih tinggi
-- Laravel 10.x
-- MySQL 5.7 atau PostgreSQL 10+
+- PHP 8.2 atau lebih tinggi
+- Laravel 12.x
+- MySQL 5.7+ atau PostgreSQL 10+
 - Composer
 
 ### Installation
+
 
 1. Clone repository
 ```bash
@@ -68,10 +72,12 @@ git clone <repository-url>
 cd asset2026-app
 ```
 
+
 2. Install dependencies
 ```bash
 composer install
 ```
+
 
 3. Setup environment
 ```bash
@@ -79,13 +85,15 @@ cp .env.example .env
 php artisan key:generate
 ```
 
+
 4. Database setup
 ```bash
 php artisan migrate
 php artisan db:seed
 ```
 
-5. Jalankan application
+
+5. Jalankan aplikasi
 ```bash
 php artisan serve
 ```
@@ -150,37 +158,41 @@ Aplikasi responsive dan dapat diakses dari:
 - Tablet (iPad, Android Tablet)
 - Smartphone (iOS, Android)
 
+
 ## 🛠️ Konfigurasi
 
 Edit file `.env` untuk konfigurasi:
 ```env
-APP_NAME="{{ config('app.name') }}"
+APP_NAME="Asset2026"
 APP_ENV=production
 APP_DEBUG=false
-DB_CONNECTION=mysql
-DB_HOST=localhost
-DB_PORT=3306
-DB_DATABASE=asset2026
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=asset2026_app
 DB_USERNAME=root
 DB_PASSWORD=
+SESSION_DRIVER=database
 ```
+
 
 ## 📞 Support
 
-- **Dokumentasi**: [Link Dokumentasi]
 - **Email Support**: support@asset2026.com
-- **Issue Tracker**: [GitHub Issues]
+
 
 ## 📄 License
 
-Proprietary - Semua hak cipta dilindungi.
+MIT - Lihat file LICENSE untuk detail.
+
 
 ## 👨‍💼 Tim Developer
 
-Dikembangkan untuk solusi manajemen aset enterprise yang scalable dan reliable.
+Dikembangkan oleh tim Asset2026 untuk solusi manajemen aset enterprise yang scalable dan reliable.
 
 ---
 
+
 **Versi**: 1.0.0  
-**Last Updated**: {{ date('Y-m-d') }}
+**Last Updated**: 2026-01-28
 
