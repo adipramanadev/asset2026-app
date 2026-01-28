@@ -6,6 +6,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\AsetController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MutasiAsetController;
+use App\Http\Controllers\LaporanController;
 
 
 Route::view('/', 'welcome')->name('welcome');
@@ -60,6 +62,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     // Aset routes - Available for both admin and petugas
     Route::resource('aset', AsetController::class);
+
+    // Mutasi Aset routes - Available for both admin and petugas
+    Route::resource('mutasi_aset', MutasiAsetController::class);
+
+    // Laporan routes - Available for both admin and petugas
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan/export-excel', [LaporanController::class, 'exportExcel'])->name('laporan.exportExcel');
+    Route::get('/laporan/export-pdf', [LaporanController::class, 'exportPdf'])->name('laporan.exportPdf');
  });
 
 
